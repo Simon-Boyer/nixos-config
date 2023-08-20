@@ -160,9 +160,13 @@
     userName  = "Simon-Boyer";
     userEmail = "si.boyer@hotmail.ca";
   };
-  home.file.".config/fish/config.fish".text = ''
-fish_add_path ~/.local/bin
-'';
+  programs.fish = {
+    enable = true;
+    shellInit = ''
+    fish_add_path ~/.local/bin
+    starship init fish | source
+    '';
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
