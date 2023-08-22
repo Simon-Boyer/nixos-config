@@ -77,6 +77,7 @@
   cliphist
   wl-clipboard
   swaylock
+  killall
   # Language servers
 	gopls
 	nodePackages.bash-language-server

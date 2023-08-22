@@ -85,7 +85,7 @@
 			"default": " ⏻ "
 		},
 		"toolip": true,
-		"on-click": "wlogout -p layer-shell"
+		"on-click": "~/.config/rofi/powermenu-launch.sh"
 	},
 	"backlight": {
 		"format": "{icon} {percent}%",
