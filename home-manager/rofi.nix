@@ -565,9 +565,12 @@ run_cmd() {
 		elif [[ $1 == '--suspend' ]]; then
 			mpc -q pause
 			amixer set Master mute
+      swaylock -k --indicator-idle-visible --indicator-radius 100 --image ~/.config/wallpapers/active.* &
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
       hyprctl dispatch exit
+    elif [[ $1 == '--lock' ]]; then
+        swaylock -k --indicator-idle-visible --indicator-radius 100 --image ~/.config/wallpapers/active.*
 		fi
 }
 
@@ -581,7 +584,7 @@ case ''${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-    swaylock -k --indicator-idle-visible --indicator-radius 100 --image ~/.config/wallpapers/active.*
+    run_cmd --lock
         ;;
     $suspend)
 		run_cmd --suspend
