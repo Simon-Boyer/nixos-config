@@ -1,10 +1,11 @@
 { inputs, lib, config, pkgs, ... }: {
 
 home.file.".config/hypr/hyprland.conf".text = ''
+
+env = GRIM_DEFAULT_DIR,$HOME/Pictures/Captures
 exec-once = swww init && swww img ~/.config/wallpapers/active.*
 exec-once = /nix/store/${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
 exec-once = waybar -s ~/.config/waybar/config.css
-exec-once = noisetorch -i
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
 monitor=,preferred,auto,auto
@@ -113,16 +114,18 @@ device:epic-mouse-v1 {
 $mainMod = SUPER
 $shiftMod = SUPER_SHIFT
 
-# Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+# Action/Program binds
 bind = $mainMod, Return, exec, alacritty
 bind = $shiftMod, Q, killactive,
 bind = $mainMod, M, exit,
-bind = $mainMod, E, exec, dolphin
 bind = $mainMod, V, togglefloating,
 bind = $mainMod, Space, exec, rofi -show drun -theme launcher
 bind = $mainMod, Escape, exec, ~/.config/rofi/powermenu-launch.sh
 bind = $mainMod, C, exec, cliphist list | rofi -dmenu -theme clip
-bind = $mainMod, P, pseudo, # dwindle
+bind = $mainMod, P, exec, slurp | grim -g - - | wl-copy # Copy screen slection
+bind = $shiftMod, P, exec, slurp | grim -g -
+
+# Split
 bind = $mainMod, J, togglesplit, # dwindle
 
 # Move focus with mainMod + arrow keys

@@ -30,6 +30,7 @@
   '';
 
   networking.hostName = "nixos"; # Define your hostname.
+  networking.nameservers = ["1.1.1.1" "1.0.0.1"];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -156,6 +157,8 @@
    services.xserver.displayManager.autoLogin.enable = true;
    services.xserver.displayManager.autoLogin.user = "simon";
 
+  services.teamviewer.enable = true;
+
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   #systemd.services."getty@tty1".enable = false;
   # systemd.services."autovt@tty1".enable = false;
@@ -176,6 +179,7 @@
     firefox
     home-manager
     libsForQt5.polkit-kde-agent
+    pciutils
   ];
 
   programs.noisetorch.enable = true;

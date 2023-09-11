@@ -13,6 +13,7 @@
     ./hyprland.nix
     ./waybar.nix
     ./rofi.nix
+    ./fish.nix
   ];
 
   nixpkgs = {
@@ -52,32 +53,55 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [ 
+  #---desktop---#
+  pavucontrol #audio
+  rofi-wayland #launcher
+  waybar #bar
+  mako #notifications
+  starship #shell prompt
+	nerdfonts #fonts
+  font-awesome #fonts
+  material-icons #fonts
+	python311Packages.pynvim #helix req
+  swaylock #lock screen
+  grim #capture screen
+  slurp #select screen
+  wl-clipboard #clipboard manipulation
+  swww #wallpaper
+  cliphist #clipboard history
+  tree-sitter
+  #---programs---#
   discord
-	pavucontrol
-	htop
-	rofi-wayland
-	waybar
-	bat
-	mako
-	starship
-	nodejs_20
-	nerdfonts
-  font-awesome
-  material-icons
-	gcc
-	gnumake
-	python311
-	cargo
+  teamviewer
+  wireshark
+  #---build/interpret tools---#
+  nodejs_20
+  gcc
+  gnumake
+  python311
+  cargo
+  #---command-line tools---#
+  htop
 	unzip
-	tree-sitter
-	python311Packages.pynvim
-	fd
-	ripgrep
-  swww
-  cliphist
-  wl-clipboard
-  swaylock
+  bat
+  fd
+  ripgrep
   killall
+  exa
+  fzf
+  silver-searcher
+  jq
+  tldr
+  btop
+  httpie
+  zoxide
+  thefuck
+  talosctl
+  nmap
+  dig
+  kubectl
+  kubernetes-helm
+  croc # file transfer tool
   # Language servers
 	gopls
 	nodePackages.bash-language-server
@@ -160,6 +184,12 @@
     enable = true;
     userName  = "Simon-Boyer";
     userEmail = "si.boyer@hotmail.ca";
+    delta.enable = true;
+    delta.options = {
+      side-by-side = true;
+      line-numbers = true;
+      syntax-theme = "villsau";
+    };
   };
   programs.fish = {
     enable = true;
@@ -168,6 +198,8 @@
     starship init fish | source
     '';
   };
+
+  # services.teamviewer.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
